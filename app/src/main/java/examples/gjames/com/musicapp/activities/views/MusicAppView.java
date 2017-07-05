@@ -1,7 +1,7 @@
-package examples.gjames.com.musicapp.views;
+package examples.gjames.com.musicapp.activities.views;
 
 import examples.gjames.com.musicapp.activities.MusicAppActivity;
-import examples.gjames.com.musicapp.controllers.MusicAppController;
+import examples.gjames.com.musicapp.activities.controllers.MusicAppController;
 
 public  abstract class MusicAppView {
 
