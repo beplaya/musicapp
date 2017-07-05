@@ -11,12 +11,12 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class StringRequestTask extends AsyncTask<URL, Integer, String> {
+public class StringRequestTask extends AsyncTask<URL, Void, String> {
 
     private StringRequestTaskListener listener;
 
     public interface StringRequestTaskListener {
-        void onComplete(String string);
+        void onRequestComplete(String string);
     }
 
     public StringRequestTask(StringRequestTaskListener listener) {
@@ -48,6 +48,6 @@ public class StringRequestTask extends AsyncTask<URL, Integer, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        listener.onComplete(s);
+        listener.onRequestComplete(s);
     }
 }
