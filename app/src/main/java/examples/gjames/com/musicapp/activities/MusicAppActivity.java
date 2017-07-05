@@ -1,9 +1,10 @@
-package examples.gjames.com.musicapp.base;
+package examples.gjames.com.musicapp.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import examples.gjames.com.musicapp.R;
+import examples.gjames.com.musicapp.controllers.MusicAppController;
 
 public class MusicAppActivity extends AppCompatActivity {
 

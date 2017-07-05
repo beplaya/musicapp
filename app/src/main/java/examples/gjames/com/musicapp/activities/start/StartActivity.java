@@ -1,7 +1,7 @@
 package examples.gjames.com.musicapp.activities.start;
 
-import examples.gjames.com.musicapp.base.MusicAppActivity;
-import examples.gjames.com.musicapp.base.MusicAppController;
+import examples.gjames.com.musicapp.activities.MusicAppActivity;
+import examples.gjames.com.musicapp.controllers.MusicAppController;
 
 public class StartActivity extends MusicAppActivity {
 
