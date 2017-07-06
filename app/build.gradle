@@ -30,5 +30,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.code.gson:gson:2.2.4' // google GSON
     compile 'com.google.guava:guava:14.0.1' // guava 14.0.1
+    compile 'james.a.grant:wagon:1.1.0'
     testCompile 'junit:junit:4.12'
 }

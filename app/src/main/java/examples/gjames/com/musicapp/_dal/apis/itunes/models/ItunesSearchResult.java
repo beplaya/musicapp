@@ -1,39 +1,41 @@
 package examples.gjames.com.musicapp._dal.apis.itunes.models;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 public class ItunesSearchResult {
 
-    private String wrapperType;
-    private String kind;
-    private int artistId;
-    private int collectionId;
-    private int trackId;
-    private String artistName;
-    private String collectionName;
-    private String trackName;
-    private String trackCensoredName;
-    private String artistViewUrl;
-    private String collectionViewUrl;
-    private String trackViewUrl;
-    private String previewUrl;
-    private String artworkUrl30;
-    private String artworkUrl60;
-    private String artworkUrl100;
-    private float collectionPrice;
-    private float trackPrice;
-    private Date releaseDate;
-    private String collectionExplicitness;
-    private String trackExplicitness;
-    private int discCount;
-    private int discNumber;
-    private int trackCount;
-    private int trackNumber;
-    private float trackTimeMillis;
-    private String country;
-    private String currency;
-    private String primaryGenreName;
-    private boolean isStreamable;
+    public String wrapperType;
+    public String kind;
+    public int artistId;
+    public int collectionId;
+    public int trackId;
+    public String artistName;
+    public String collectionName;
+    public String trackName;
+    public String trackCensoredName;
+    public String artistViewUrl;
+    public String collectionViewUrl;
+    public String trackViewUrl;
+    public String previewUrl;
+    public String artworkUrl30;
+    public String artworkUrl60;
+    public String artworkUrl100;
+    public float collectionPrice;
+    public float trackPrice;
+    public Date releaseDate;
+    public String collectionExplicitness;
+    public String trackExplicitness;
+    public int discCount;
+    public int discNumber;
+    public int trackCount;
+    public int trackNumber;
+    public float trackTimeMillis;
+    public String country;
+    public String currency;
+    public String primaryGenreName;
+    public boolean isStreamable;
 
     public String getWrapperType() {
         return wrapperType;

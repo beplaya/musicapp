@@ -1,15 +1,22 @@
 package examples.gjames.com.musicapp.controllers.search;
 
+import android.content.Intent;
+
 import examples.gjames.com.musicapp._dal.apis.itunes.ItunesSearcher;
 import examples.gjames.com.musicapp._dal.apis.itunes.models.ItunesSearchResult;
 import examples.gjames.com.musicapp._dal.apis.itunes.models.ItunesSearchResultsList;
 import examples.gjames.com.musicapp.activities._MusicAppActivity;
 import examples.gjames.com.musicapp.controllers._MusicAppController;
 import examples.gjames.com.musicapp.views.search.ItunesSearchView;
+import james.a.grant.wagon.Crate;
+import james.a.grant.wagon.Wagon;
 
 public class ItunesSearchController extends _MusicAppController<ItunesSearchView> implements ItunesSearcher.ItunesSearcherListener {
 
     private ItunesSearcher itunesSearcher;
+
+    @Crate(key = "selecteItemHash")
+    public ItunesSearchResult selectedItem = null;
 
     @Override
     public void init(_MusicAppActivity activity) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
@@ -36,6 +43,14 @@ public class ItunesSearchController extends _MusicAppController<ItunesSearchView
     }
 
     public void onSearchResultSelected(ItunesSearchResult item) {
+        selectedItem = item;
+        startNextAcitivity();
+    }
 
+    private void startNextAcitivity() {
+        Wagon<ItunesSearchController> wagon = new Wagon<>(this.getClass(), this);//this==MainActivity
+        Intent intent = new Intent(activity.getApplicationContext(), LyricsActivity.class);
+        wagon.pack(intent);
+        activity.startActivity(intent);
     }
 }
