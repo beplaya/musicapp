@@ -10,6 +10,8 @@ public class ItunesSearchResult {
     private int collectionId;
     private int trackId;
     private String artistName;
+    private String collectionName;
+    private String trackName;
     private String trackCensoredName;
     private String artistViewUrl;
     private String collectionViewUrl;
@@ -257,37 +259,19 @@ public class ItunesSearchResult {
         isStreamable = streamable;
     }
 
-    @Override
-    public String toString() {
-        return "ItunesSearchResult{" +
-                "wrapperType='" + wrapperType + '\'' +
-                ", kind='" + kind + '\'' +
-                ", artistId=" + artistId +
-                ", collectionId=" + collectionId +
-                ", trackId=" + trackId +
-                ", artistName='" + artistName + '\'' +
-                ", trackCensoredName='" + trackCensoredName + '\'' +
-                ", artistViewUrl='" + artistViewUrl + '\'' +
-                ", collectionViewUrl='" + collectionViewUrl + '\'' +
-                ", trackViewUrl='" + trackViewUrl + '\'' +
-                ", previewUrl='" + previewUrl + '\'' +
-                ", artworkUrl30='" + artworkUrl30 + '\'' +
-                ", artworkUrl60='" + artworkUrl60 + '\'' +
-                ", artworkUrl100='" + artworkUrl100 + '\'' +
-                ", collectionPrice=" + collectionPrice +
-                ", trackPrice=" + trackPrice +
-                ", releaseDate=" + releaseDate +
-                ", collectionExplicitness='" + collectionExplicitness + '\'' +
-                ", trackExplicitness='" + trackExplicitness + '\'' +
-                ", discCount=" + discCount +
-                ", discNumber=" + discNumber +
-                ", trackCount=" + trackCount +
-                ", trackNumber=" + trackNumber +
-                ", trackTimeMillis=" + trackTimeMillis +
-                ", country='" + country + '\'' +
-                ", currency='" + currency + '\'' +
-                ", primaryGenreName='" + primaryGenreName + '\'' +
-                ", isStreamable=" + isStreamable +
-                '}';
+    public String getCollectionName() {
+        return collectionName;
+    }
+
+    public void setCollectionName(String collectionName) {
+        this.collectionName = collectionName;
+    }
+
+    public String getTrackName() {
+        return trackName;
+    }
+
+    public void setTrackName(String trackName) {
+        this.trackName = trackName;
     }
 }

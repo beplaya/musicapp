@@ -2,7 +2,7 @@ package examples.gjames.com.musicapp.views.search;
 
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import examples.gjames.com.musicapp._dal.apis.itunes.models.ItunesSearchResult;
 import examples.gjames.com.musicapp.activities._MusicAppActivity;
@@ -17,14 +17,17 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
 
     private EditText etSearchTerms;
     private Button btnSearch;
-    private TextView tvTesting;
+    private ListView resultsList;
+    private ItunesSearchResultsListAdapter itunesSearchResultsListAdapter;
 
     @Override
     protected void bind(_MusicAppActivity activity, _MusicAppController controller) {
         etSearchTerms = findEditText(id.et_itunes_search_terms);
         btnSearch = findButton(id.btn_itunes_search);
-        tvTesting = findTextView(id.tv_testing);
+        resultsList = findListView(id.lv_search_results);
         btnSearch.setOnClickListener(getController().handleSearch());
+        itunesSearchResultsListAdapter = new ItunesSearchResultsListAdapter(activity.getLayoutInflater(), activity.getResources());
+        resultsList.setAdapter(itunesSearchResultsListAdapter);
     }
 
     public String getTerms() {
@@ -38,7 +41,6 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
 
 
     public void onSearchError() {
-        tvTesting.setText("Error!");
         reset();
     }
 
@@ -47,15 +49,10 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
     }
 
     public void onSearchResults(ItunesSearchResult[] results) {
-        String s = "";
-        for (ItunesSearchResult result : results) {
-            s += result.toString()+ "\n\n";
-        }
-        tvTesting.setText(s);
+        itunesSearchResultsListAdapter.setResults(results);
     }
 
     public void onInvalidSearchTerms() {
-        tvTesting.setText("Invalid terms!");
         reset();
     }
 }

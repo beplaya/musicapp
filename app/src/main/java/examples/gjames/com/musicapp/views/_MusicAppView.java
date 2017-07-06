@@ -24,28 +24,24 @@ public abstract class _MusicAppView<T extends _MusicAppController> {
         bind(activity, controller);
     }
 
-    protected EditText findEditText(int id) {
+    public EditText findEditText(int id) {
         return (EditText) findViewById(id);
     }
 
-    protected Button findButton(int id) {
+    public Button findButton(int id) {
         return (Button) findViewById(id);
     }
 
-    protected TextView findTextView(int id) {
+    public TextView findTextView(int id) {
         return (TextView) findViewById(id);
     }
 
-    protected ListView findListView(int id) {
+    public ListView findListView(int id) {
         return (ListView) findViewById(id);
     }
 
-    protected View findViewById(int id) {
+    public View findViewById(int id) {
         return activity.findViewById(id);
-    }
-
-    protected _MusicAppActivity getActivity() {
-        return activity;
     }
 
     protected T getController() {
@@ -55,4 +51,5 @@ public abstract class _MusicAppView<T extends _MusicAppController> {
     protected abstract void bind(_MusicAppActivity activity, _MusicAppController controller);
 
     protected abstract int getLayoutId();
+
 }
