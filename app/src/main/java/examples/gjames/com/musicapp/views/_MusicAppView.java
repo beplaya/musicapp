@@ -14,7 +14,7 @@ import examples.gjames.com.musicapp.controllers._MusicAppController;
  */
 public abstract class _MusicAppView<T extends _MusicAppController> {
 
-    private _MusicAppActivity activity;
+    protected  _MusicAppActivity activity;
     private _MusicAppController controller;
 
     public void init(_MusicAppActivity activity, _MusicAppController controller) {

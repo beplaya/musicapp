@@ -1,6 +1,8 @@
 package examples.gjames.com.musicapp.views.search;
 
+import android.content.Context;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -32,17 +34,23 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvSearchErrorMsg.setText("");
-                tvSearchErrorMsg.setVisibility(View.GONE);
-                etSearchTerms.setFocusableInTouchMode(false);
-                etSearchTerms.setFocusable(false);
-                etSearchTerms.setFocusableInTouchMode(true);
-                etSearchTerms.setFocusable(true);
-                getController().handleSearch();
+                handleSearch(view);
             }
         });
         itunesSearchResultsListAdapter = new ItunesSearchResultsListAdapter(activity.getLayoutInflater(), activity.getResources());
         resultsList.setAdapter(itunesSearchResultsListAdapter);
+    }
+
+    private void handleSearch(View view) {
+        tvSearchErrorMsg.setText("");
+        tvSearchErrorMsg.setVisibility(View.GONE);
+        etSearchTerms.setFocusableInTouchMode(false);
+        etSearchTerms.setFocusable(false);
+        etSearchTerms.setFocusableInTouchMode(true);
+        etSearchTerms.setFocusable(true);
+        InputMethodManager imm = (InputMethodManager) ItunesSearchView.this.activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        getController().handleSearch();
     }
 
     public String getTerms() {
