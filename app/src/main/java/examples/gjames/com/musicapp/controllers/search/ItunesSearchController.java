@@ -1,6 +1,7 @@
 package examples.gjames.com.musicapp.controllers.search;
 
 import examples.gjames.com.musicapp._dal.apis.itunes.ItunesSearcher;
+import examples.gjames.com.musicapp._dal.apis.itunes.models.ItunesSearchResult;
 import examples.gjames.com.musicapp._dal.apis.itunes.models.ItunesSearchResultsList;
 import examples.gjames.com.musicapp.activities._MusicAppActivity;
 import examples.gjames.com.musicapp.controllers._MusicAppController;
@@ -32,5 +33,9 @@ public class ItunesSearchController extends _MusicAppController<ItunesSearchView
         } else {
             getView().onSearchResults(list.getResults());
         }
+    }
+
+    public void onSearchResultSelected(ItunesSearchResult item) {
+        
     }
 }

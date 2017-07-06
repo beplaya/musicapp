@@ -3,6 +3,7 @@ package examples.gjames.com.musicapp.views.search;
 import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -40,6 +41,12 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
             }
         });
         resultsList = findListView(id.lv_search_results);
+        resultsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                getController().onSearchResultSelected(itunesSearchResultsListAdapter.getItem(i));
+            }
+        });
         itunesSearchResultsListAdapter = new ItunesSearchResultsListAdapter(activity.getLayoutInflater(), activity.getResources());
         resultsList.setAdapter(itunesSearchResultsListAdapter);
     }
