@@ -3,20 +3,25 @@ package examples.gjames.com.musicapp._dal;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.widget.ImageView;
 
 import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
 
-    public DownloadImageTask(ImageView bmImage) {
-        this.bmImage = bmImage;
+    private String url;
+    private DownloadImageListener listener;
+
+    public interface DownloadImageListener {
+        void onDownloaded(String url, Bitmap bitmap);
+    }
+
+    public DownloadImageTask(DownloadImageListener listener) {
+        this.listener = listener;
     }
 
     protected Bitmap doInBackground(String... urls) {
-        String url = urls[0];
-        Bitmap bitmap;
+        url = urls[0];
+        Bitmap bitmap = null;
         try {
             InputStream in = new java.net.URL(url).openStream();
             bitmap = BitmapFactory.decodeStream(in);
@@ -28,8 +33,6 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap bitmap) {
-        if (bitmap != null) {
-            bmImage.setImageBitmap(bitmap);
-        }
+        listener.onDownloaded(url, bitmap);
     }
 }

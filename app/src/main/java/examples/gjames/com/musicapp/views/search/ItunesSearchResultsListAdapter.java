@@ -1,6 +1,7 @@
 package examples.gjames.com.musicapp.views.search;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,13 @@ import static examples.gjames.com.musicapp.R.id;
 import static examples.gjames.com.musicapp.R.layout;
 
 
-public class ItunesSearchResultsListAdapter extends BaseAdapter {
+public class ItunesSearchResultsListAdapter extends BaseAdapter implements DownloadImageTask.DownloadImageListener {
 
     private ItunesSearchResult[] results = new ItunesSearchResult[]{};
     private LayoutInflater layoutInflater;
     private Resources resources;
-    private Map<Integer, Boolean> imageDownloadStarted = new HashMap<>();
+    private Map<String, Bitmap> urlImageMap = new HashMap<>();
+    private Map<String, Boolean> startedDownload = new HashMap<>();
 
     public ItunesSearchResultsListAdapter(LayoutInflater layoutInflater, Resources resources) {
         this.layoutInflater = layoutInflater;
@@ -54,10 +56,12 @@ public class ItunesSearchResultsListAdapter extends BaseAdapter {
         ((TextView) view.findViewById(id.result_item_tv_album_name)).setText(item.getCollectionName());
         ((TextView) view.findViewById(id.result_item_tv_artist_name)).setText(item.getArtistName());
         ((TextView) view.findViewById(id.result_item_tv_track_name)).setText(item.getTrackName());
-        if (imageDownloadStarted.get(i) == null || !imageDownloadStarted.get(i)) {
-            DownloadImageTask downloadImageTask = new DownloadImageTask((ImageView) view.findViewById(id.result_item_iv_album_image));
-            downloadImageTask.execute(item.getArtworkUrl100());
-            imageDownloadStarted.put(i, true);
+        String url = getArtworkUrl(i);
+        if (urlImageMap.get(url) != null) {
+            ((ImageView) view.findViewById(id.result_item_iv_album_image)).setImageBitmap(urlImageMap.get(i));
+        } else if (!startedDownload.get(url)) {
+            new DownloadImageTask(this).execute(url);
+            startedDownload.put(url, true);
         }
         return view;
     }
@@ -65,8 +69,20 @@ public class ItunesSearchResultsListAdapter extends BaseAdapter {
     public void setResults(ItunesSearchResult[] results) {
         this.results = results;
         for (int i = 0; i < results.length; i++) {
-            imageDownloadStarted.put(i, false);
+            String url = getArtworkUrl(i);
+            urlImageMap.put(url, null);
+            startedDownload.put(url, false);
         }
+        notifyDataSetChanged();
+    }
+
+    private String getArtworkUrl(int i) {
+        return getItem(i).getArtworkUrl100();
+    }
+
+    @Override
+    public void onDownloaded(String url, Bitmap bitmap) {
+        urlImageMap.put(url, bitmap);
         notifyDataSetChanged();
     }
 }

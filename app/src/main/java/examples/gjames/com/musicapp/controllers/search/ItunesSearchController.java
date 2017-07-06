@@ -36,6 +36,6 @@ public class ItunesSearchController extends _MusicAppController<ItunesSearchView
     }
 
     public void onSearchResultSelected(ItunesSearchResult item) {
-        
+
     }
 }
