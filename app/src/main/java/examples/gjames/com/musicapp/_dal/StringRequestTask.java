@@ -1,4 +1,4 @@
-package examples.gjames.com.musicapp.dal;
+package examples.gjames.com.musicapp._dal;
 
 import android.os.AsyncTask;
 

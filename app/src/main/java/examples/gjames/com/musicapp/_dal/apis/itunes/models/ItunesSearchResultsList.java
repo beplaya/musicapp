@@ -1,4 +1,4 @@
-package examples.gjames.com.musicapp.dal.apis.itunes.models;
+package examples.gjames.com.musicapp._dal.apis.itunes.models;
 
 public class ItunesSearchResultsList {
 

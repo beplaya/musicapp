@@ -16,7 +16,7 @@ public abstract class _MusicAppController<T extends _MusicAppView> {
     public void init(_MusicAppActivity activity) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         this.activity = activity;
         view = createView();
-        if(view == null){
+        if (view == null) {
             throw new IllegalStateException(String.format("View is null in this controllerClass! %s", getClass().getSimpleName()));
         } else {
             view.init(activity, this);
@@ -29,4 +29,9 @@ public abstract class _MusicAppController<T extends _MusicAppView> {
         String parameterClassName = pt.getActualTypeArguments()[0].toString().split("\\s")[1];
         return (T) Class.forName(parameterClassName).newInstance();
     }
+
+    protected T getView() {
+        return (T) view;
+    }
+
 }
