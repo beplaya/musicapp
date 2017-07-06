@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import examples.gjames.com.musicapp.activities._MusicAppActivity;
@@ -15,7 +14,7 @@ import examples.gjames.com.musicapp.controllers._MusicAppController;
  */
 public abstract class _MusicAppView<T extends _MusicAppController> {
 
-    protected  _MusicAppActivity activity;
+    protected _MusicAppActivity activity;
     private _MusicAppController controller;
 
     public void init(_MusicAppActivity activity, _MusicAppController controller) {

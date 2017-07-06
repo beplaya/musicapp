@@ -9,9 +9,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.Comparator;
-
 import examples.gjames.com.musicapp._dal.apis.itunes.models.ItunesSearchResult;
 import examples.gjames.com.musicapp.activities._MusicAppActivity;
 import examples.gjames.com.musicapp.controllers._MusicAppController;
