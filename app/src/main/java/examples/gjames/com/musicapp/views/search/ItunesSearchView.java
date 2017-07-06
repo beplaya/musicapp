@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 import examples.gjames.com.musicapp._dal.apis.itunes.models.ItunesSearchResult;
 import examples.gjames.com.musicapp.activities._MusicAppActivity;
 import examples.gjames.com.musicapp.controllers._MusicAppController;
@@ -52,6 +55,7 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
     }
 
     private void handleSearch(View view) {
+        itunesSearchResultsListAdapter.setResults(new ItunesSearchResult[0]);
         progressBar.setVisibility(View.VISIBLE);
         tvSearchErrorMsg.setText("");
         tvSearchErrorMsg.setVisibility(View.GONE);

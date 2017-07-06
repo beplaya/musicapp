@@ -40,7 +40,9 @@ public class ItunesSearcher implements StringRequestTask.StringRequestTaskListen
     @Override
     public void onRequestComplete(String requestResponse, boolean error) {
         ItunesSearchResultsList resultsList = parse(requestResponse);
-        listener.onSearchResults(resultsList == null ? new ItunesSearchResultsList() : resultsList, error);
+        ItunesSearchResultsList finalList = resultsList == null ? new ItunesSearchResultsList() : resultsList;
+        finalList.sortByCollectionName();
+        listener.onSearchResults(finalList, error);
     }
 
     private ItunesSearchResultsList parse(String resultString) {
