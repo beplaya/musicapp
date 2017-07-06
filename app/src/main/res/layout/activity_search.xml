@@ -28,11 +28,11 @@
 
         <TextView
             android:id="@+id/tv_search_error_msg"
-            android:gravity="center"
-            android:textSize="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_red_light" />
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="15dp" />
 
         <View
             android:layout_width="match_parent"

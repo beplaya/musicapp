@@ -25,7 +25,6 @@ public class ItunesSearchResultsListAdapter extends BaseAdapter implements Downl
     private LayoutInflater layoutInflater;
     private Resources resources;
     private Map<String, Bitmap> urlImageMap = new HashMap<>();
-    private Map<String, Boolean> startedDownload = new HashMap<>();
 
     public ItunesSearchResultsListAdapter(LayoutInflater layoutInflater, Resources resources) {
         this.layoutInflater = layoutInflater;
@@ -56,12 +55,10 @@ public class ItunesSearchResultsListAdapter extends BaseAdapter implements Downl
         ((TextView) view.findViewById(id.result_item_tv_album_name)).setText(item.getCollectionName());
         ((TextView) view.findViewById(id.result_item_tv_artist_name)).setText(item.getArtistName());
         ((TextView) view.findViewById(id.result_item_tv_track_name)).setText(item.getTrackName());
+        ImageView ivAlbumArt = view.findViewById(id.result_item_iv_album_image);
         String url = getArtworkUrl(i);
         if (urlImageMap.get(url) != null) {
-            ((ImageView) view.findViewById(id.result_item_iv_album_image)).setImageBitmap(urlImageMap.get(i));
-        } else if (!startedDownload.get(url)) {
-            new DownloadImageTask(this).execute(url);
-            startedDownload.put(url, true);
+            ivAlbumArt.setImageBitmap(urlImageMap.get(url));
         }
         return view;
     }
@@ -71,8 +68,15 @@ public class ItunesSearchResultsListAdapter extends BaseAdapter implements Downl
         for (int i = 0; i < results.length; i++) {
             String url = getArtworkUrl(i);
             urlImageMap.put(url, null);
-            startedDownload.put(url, false);
+            new DownloadImageTask(this).execute(url);
         }
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDownloaded(String downloadUrl, Bitmap bitmap) {
+        urlImageMap.put(downloadUrl, bitmap);
+
         notifyDataSetChanged();
     }
 
@@ -80,9 +84,4 @@ public class ItunesSearchResultsListAdapter extends BaseAdapter implements Downl
         return getItem(i).getArtworkUrl100();
     }
 
-    @Override
-    public void onDownloaded(String url, Bitmap bitmap) {
-        urlImageMap.put(url, bitmap);
-        notifyDataSetChanged();
-    }
 }

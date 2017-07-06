@@ -21,7 +21,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     protected Bitmap doInBackground(String... urls) {
         url = urls[0];
-        Bitmap bitmap = null;
+        Bitmap bitmap;
         try {
             InputStream in = new java.net.URL(url).openStream();
             bitmap = BitmapFactory.decodeStream(in);
