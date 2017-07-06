@@ -96,7 +96,7 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
     }
 
     private void onNoResultsFound() {
-        tvSearchErrorMsg.setText("No results found.");
+        tvSearchErrorMsg.setText("No results found");
         tvSearchErrorMsg.setVisibility(View.VISIBLE);
     }
 
