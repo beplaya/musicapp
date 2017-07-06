@@ -16,7 +16,7 @@ public class ItunesSearcher implements StringRequestTask.StringRequestTaskListen
     private Gson gson = new Gson();
 
     public interface ItunesSearcherListener {
-        void onSearchResults(ItunesSearchResultsList list);
+        void onSearchResults(ItunesSearchResultsList list, boolean error);
     }
 
     public ItunesSearcher(ItunesSearcherListener listener) {
@@ -28,14 +28,14 @@ public class ItunesSearcher implements StringRequestTask.StringRequestTaskListen
             new StringRequestTask(this).execute(new URL(String.format("%s%s", baseURL, TextUtils.join("+", terms))));
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            onRequestComplete(null);
+            onRequestComplete(null, true);
         }
     }
 
     @Override
-    public void onRequestComplete(String requestResponse) {
+    public void onRequestComplete(String requestResponse, boolean error) {
         ItunesSearchResultsList resultsList = parse(requestResponse);
-        listener.onSearchResults(resultsList == null ? new ItunesSearchResultsList() : resultsList);
+        listener.onSearchResults(resultsList == null ? new ItunesSearchResultsList() : resultsList, error);
     }
 
     private ItunesSearchResultsList parse(String resultString) {

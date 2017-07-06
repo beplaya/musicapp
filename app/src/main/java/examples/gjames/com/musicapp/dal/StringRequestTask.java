@@ -14,13 +14,20 @@ import java.net.URL;
 public class StringRequestTask extends AsyncTask<URL, Void, String> {
 
     private StringRequestTaskListener listener;
+    private boolean error = false;
 
     public interface StringRequestTaskListener {
-        void onRequestComplete(String string);
+        void onRequestComplete(String string, boolean error);
     }
 
     public StringRequestTask(StringRequestTaskListener listener) {
         this.listener = listener;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        error = false;
     }
 
     @Override
@@ -37,6 +44,7 @@ public class StringRequestTask extends AsyncTask<URL, Void, String> {
             new String(ByteStreams.toByteArray(inputStream), Charsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
+            error = true;
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -48,6 +56,6 @@ public class StringRequestTask extends AsyncTask<URL, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        listener.onRequestComplete(s);
+        listener.onRequestComplete(s, error);
     }
 }
