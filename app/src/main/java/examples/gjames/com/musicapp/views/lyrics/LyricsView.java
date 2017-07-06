@@ -21,6 +21,7 @@ public class LyricsView extends _MusicAppView<LyricsController> {
     private TextView tvAlbumName;
     private TextView tvArtistName;
     private TextView tvTrackName;
+    private TextView tvLyricsText;
 
     @Override
     protected void bind(_MusicAppActivity activity, _MusicAppController controller) {
@@ -28,6 +29,7 @@ public class LyricsView extends _MusicAppView<LyricsController> {
         tvArtistName = findTextView(id.result_item_tv_artist_name);
         tvTrackName = findTextView(id.result_item_tv_track_name);
         ivAlbumArt = findImageView(id.result_item_iv_album_image);
+        tvLyricsText = findTextView(id.result_item_tv_lyrics_text);
     }
 
     @Override

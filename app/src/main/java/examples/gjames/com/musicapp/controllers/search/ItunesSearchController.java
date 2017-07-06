@@ -29,7 +29,7 @@ public class ItunesSearchController extends _MusicAppController<ItunesSearchView
         if (terms.isEmpty()) {
             getView().onInvalidSearchTerms();
         } else {
-            itunesSearcher.search(terms);
+            itunesSearcher.searchByTerms(terms);
         }
     }
 

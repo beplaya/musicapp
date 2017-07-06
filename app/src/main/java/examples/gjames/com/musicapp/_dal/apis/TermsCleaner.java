@@ -1,4 +1,4 @@
-package examples.gjames.com.musicapp._dal.apis.itunes;
+package examples.gjames.com.musicapp._dal.apis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class TermsCleaner {
         return string;
     }
 
-    public String[] cleanTerms(String[] terms) {
+    public String[] cleanTerms(String... terms) {
         List<String> cleaned = new ArrayList<>();
         for (String term : terms) {
             String[] split = term.split("\\s+");
