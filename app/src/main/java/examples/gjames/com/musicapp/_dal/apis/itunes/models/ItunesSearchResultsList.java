@@ -17,7 +17,18 @@ public class ItunesSearchResultsList {
                 } else if (b == null || b.getCollectionName() == null) {
                     return 1;
                 }
-                return a.getCollectionName().compareTo(b.getCollectionName());
+                int c = a.getCollectionName().compareTo(b.getCollectionName());
+                if (c == 0) {
+                    if (a == null || a.getTrackName() == null) {
+                        return -1;
+                    } else if (b == null || b.getTrackName() == null) {
+                        return 1;
+                    } else {
+                        return a.getTrackName().compareTo(b.getTrackName());
+                    }
+                } else {
+                    return c;
+                }
             }
         });
     }
