@@ -24,24 +24,28 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
     private ListView resultsList;
     private ItunesSearchResultsListAdapter itunesSearchResultsListAdapter;
     private TextView tvSearchErrorMsg;
+    private View progressBar;
 
     @Override
     protected void bind(_MusicAppActivity activity, final _MusicAppController controller) {
         tvSearchErrorMsg = findTextView(id.tv_search_error_msg);
         etSearchTerms = findEditText(id.et_itunes_search_terms);
         btnSearch = findButton(id.btn_itunes_search);
-        resultsList = findListView(id.lv_search_results);
+        progressBar = findViewById(id.pb_search_itunes);
+        hideProgressBar();
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 handleSearch(view);
             }
         });
+        resultsList = findListView(id.lv_search_results);
         itunesSearchResultsListAdapter = new ItunesSearchResultsListAdapter(activity.getLayoutInflater(), activity.getResources());
         resultsList.setAdapter(itunesSearchResultsListAdapter);
     }
 
     private void handleSearch(View view) {
+        progressBar.setVisibility(View.VISIBLE);
         tvSearchErrorMsg.setText("");
         tvSearchErrorMsg.setVisibility(View.GONE);
         etSearchTerms.setFocusableInTouchMode(false);
@@ -60,11 +64,17 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
     public void onInvalidSearchTerms() {
         showErrorMsg("Please enter valid search terms");
         reset();
+        hideProgressBar();
     }
 
     public void onSearchError() {
         showErrorMsg("There was an error with your search");
         reset();
+        hideProgressBar();
+    }
+
+    private void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
     }
 
     private void showErrorMsg(String s) {
@@ -79,6 +89,15 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
     public void onSearchResults(ItunesSearchResult[] results) {
         tvSearchErrorMsg.setVisibility(View.GONE);
         itunesSearchResultsListAdapter.setResults(results);
+        hideProgressBar();
+        if (results.length == 0) {
+            onNoResultsFound();
+        }
+    }
+
+    private void onNoResultsFound() {
+        tvSearchErrorMsg.setText("No results found.");
+        tvSearchErrorMsg.setVisibility(View.VISIBLE);
     }
 
     @Override
