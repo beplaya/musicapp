@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
         <EditText
@@ -15,11 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Search Terms" />
+            android:hint="Search Terms"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/btn_itunes_search"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:text="Search" />
@@ -27,12 +29,28 @@
         <TextView
             android:id="@+id/tv_search_error_msg"
             android:layout_width="match_parent"
-            android:textColor="@android:color/holo_red_light"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_light" />
 
-        <ListView
-            android:id="@+id/lv_search_results"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+            android:layout_height="5dp"
+            android:background="@android:color/background_dark"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/lv_search_results"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"></ListView>
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
