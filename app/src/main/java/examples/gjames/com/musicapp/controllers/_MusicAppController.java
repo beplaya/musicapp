@@ -34,4 +34,5 @@ public abstract class _MusicAppController<T extends _MusicAppView> {
         return (T) view;
     }
 
+    public abstract void onResume();
 }

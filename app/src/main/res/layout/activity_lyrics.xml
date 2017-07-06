@@ -60,6 +60,9 @@
             android:layout_height="5dp"
             android:background="@android:color/background_dark"></View>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -69,6 +72,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </ScrollView>
+            <ProgressBar
+                android:layout_centerInParent="true"
+                android:id="@+id/result_item_pb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

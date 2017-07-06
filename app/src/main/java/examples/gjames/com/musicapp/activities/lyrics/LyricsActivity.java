@@ -6,4 +6,10 @@ import examples.gjames.com.musicapp.controllers.lyrics.LyricsController;
 
 public class LyricsActivity extends _MusicAppActivity<LyricsController> {
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        controller.onResume();
+    }
 }

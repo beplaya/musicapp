@@ -24,6 +24,10 @@ public class ItunesSearchController extends _MusicAppController<ItunesSearchView
         itunesSearcher = new ItunesSearcher(this);
     }
 
+    @Override
+    public void onResume() {
+    }
+
     public void handleSearch() {
         String terms = getView().getTerms();
         if (terms.isEmpty()) {
