@@ -3,6 +3,7 @@ package examples.gjames.com.musicapp.views;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,6 +39,10 @@ public abstract class _MusicAppView<T extends _MusicAppController> {
 
     public ListView findListView(int id) {
         return (ListView) findViewById(id);
+    }
+
+    public ImageView findImageView(int id) {
+        return (ImageView) findViewById(id);
     }
 
     public View findViewById(int id) {
