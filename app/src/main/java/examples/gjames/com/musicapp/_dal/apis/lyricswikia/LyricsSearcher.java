@@ -28,7 +28,7 @@ public class LyricsSearcher extends Searcher implements StringRequestTask.String
 
     @Override
     public String getBaseUrl() {
-        return "http://lyrics.wikia.com/api.php?func=getSong&amp;artist=%s&amp;song=%s&amp;fmt=json";
+        return "http://lyrics.wikia.com/api.php?func=getSong&artist=%s&song=%s&fmt=json";
     }
 
     @Override
@@ -41,12 +41,12 @@ public class LyricsSearcher extends Searcher implements StringRequestTask.String
 
     private Lyrics parse(String resultString) {
         try {
+            resultString = resultString == null ? "{}" :  resultString.replaceAll("\r", "").replaceAll("\n", "").replaceAll("\t", "");
+            resultString = resultString.replace("song = ", "");
             return gson.fromJson(resultString, Lyrics.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
-
-
 }
