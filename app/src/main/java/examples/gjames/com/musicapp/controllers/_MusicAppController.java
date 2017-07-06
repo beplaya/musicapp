@@ -1,17 +1,19 @@
 package examples.gjames.com.musicapp.controllers;
 
+import java.lang.reflect.ParameterizedType;
+
 import examples.gjames.com.musicapp.activities._MusicAppActivity;
 import examples.gjames.com.musicapp.views._MusicAppView;
 
 /**
  * Super class for all controllers
  */
-public abstract class _MusicAppController {
+public abstract class _MusicAppController<T extends _MusicAppView> {
 
     private _MusicAppView view;
     protected _MusicAppActivity activity;
 
-    public void init(_MusicAppActivity activity) {
+    public void init(_MusicAppActivity activity) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         this.activity = activity;
         view = createView();
         if(view == null){
@@ -21,5 +23,10 @@ public abstract class _MusicAppController {
         }
     }
 
-    protected abstract _MusicAppView createView();
+    private T createView() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        ParameterizedType pt
+                = (ParameterizedType) getClass().getGenericSuperclass();
+        String parameterClassName = pt.getActualTypeArguments()[0].toString().split("\\s")[1];
+        return (T) Class.forName(parameterClassName).newInstance();
+    }
 }
