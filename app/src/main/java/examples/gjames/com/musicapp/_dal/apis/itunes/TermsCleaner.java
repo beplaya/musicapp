@@ -22,6 +22,6 @@ public class TermsCleaner {
                 }
             }
         }
-        return (String[]) cleaned.toArray();
+        return cleaned.toArray(new String[0]);
     }
 }

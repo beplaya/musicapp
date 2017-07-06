@@ -41,7 +41,7 @@ public class StringRequestTask extends AsyncTask<URL, Void, String> {
         try {
             urlConnection = (HttpURLConnection) urls[0].openConnection();
             InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-            new String(ByteStreams.toByteArray(inputStream), Charsets.UTF_8);
+            resultString = new String(ByteStreams.toByteArray(inputStream), Charsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
             error = true;
@@ -49,8 +49,8 @@ public class StringRequestTask extends AsyncTask<URL, Void, String> {
             if (urlConnection != null) {
                 urlConnection.disconnect();
             }
-            return resultString;
         }
+        return resultString;
     }
 
     @Override

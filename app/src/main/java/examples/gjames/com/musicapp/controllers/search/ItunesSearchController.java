@@ -18,10 +18,11 @@ public class ItunesSearchController extends _MusicAppController<ItunesSearchView
         itunesSearcher = new ItunesSearcher(this);
     }
 
-    public View.OnClickListener handleSearch(final String terms) {
+    public View.OnClickListener handleSearch() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String  terms = getView().getTerms();
                 if(terms.isEmpty()){
                     getView().onInvalidSearchTerms();
                 }else {

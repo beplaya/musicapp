@@ -3,7 +3,7 @@ package examples.gjames.com.musicapp._dal.apis.itunes.models;
 public class ItunesSearchResultsList {
 
     private int resultsCount;
-    private ItunesSearchResult[] results;
+    private ItunesSearchResult[] results = new ItunesSearchResult[]{};
 
     public ItunesSearchResult[] getResults() {
         return results;

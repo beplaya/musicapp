@@ -17,14 +17,14 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
 
     private EditText etSearchTerms;
     private Button btnSearch;
-    private TextView textView;
+    private TextView tvTesting;
 
     @Override
     protected void bind(_MusicAppActivity activity, _MusicAppController controller) {
         etSearchTerms = findEditText(id.et_itunes_search_terms);
         btnSearch = findButton(id.btn_itunes_search);
-        textView = findTextView(id.tv_testing);
-        btnSearch.setOnClickListener(getController().handleSearch(getTerms()));
+        tvTesting = findTextView(id.tv_testing);
+        btnSearch.setOnClickListener(getController().handleSearch());
     }
 
     public String getTerms() {
@@ -38,21 +38,24 @@ public class ItunesSearchView extends _MusicAppView<ItunesSearchController> {
 
 
     public void onSearchError() {
-        textView.setText("Error!");
+        tvTesting.setText("Error!");
         reset();
     }
 
     private void reset() {
-        textView.setText("");
         etSearchTerms.setText("");
     }
 
     public void onSearchResults(ItunesSearchResult[] results) {
-
+        String s = "";
+        for (ItunesSearchResult result : results) {
+            s += result.toString()+ "\n\n";
+        }
+        tvTesting.setText(s);
     }
 
     public void onInvalidSearchTerms() {
-        textView.setText("Invalid terms!");
+        tvTesting.setText("Invalid terms!");
         reset();
     }
 }
