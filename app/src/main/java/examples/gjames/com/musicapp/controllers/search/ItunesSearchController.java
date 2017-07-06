@@ -1,7 +1,5 @@
 package examples.gjames.com.musicapp.controllers.search;
 
-import android.view.View;
-
 import examples.gjames.com.musicapp._dal.apis.itunes.ItunesSearcher;
 import examples.gjames.com.musicapp._dal.apis.itunes.models.ItunesSearchResultsList;
 import examples.gjames.com.musicapp.activities._MusicAppActivity;
@@ -18,18 +16,13 @@ public class ItunesSearchController extends _MusicAppController<ItunesSearchView
         itunesSearcher = new ItunesSearcher(this);
     }
 
-    public View.OnClickListener handleSearch() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String  terms = getView().getTerms();
-                if(terms.isEmpty()){
-                    getView().onInvalidSearchTerms();
-                }else {
-                    itunesSearcher.search(terms);
-                }
-            }
-        };
+    public void handleSearch() {
+        String terms = getView().getTerms();
+        if (terms.isEmpty()) {
+            getView().onInvalidSearchTerms();
+        } else {
+            itunesSearcher.search(terms);
+        }
     }
 
     @Override
